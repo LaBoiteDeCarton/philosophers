@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/10 15:56:52 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/10 15:56:53 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 # include <unistd.h>
@@ -14,22 +26,16 @@
 typedef struct s_data	t_data;
 typedef struct s_phi	t_phi;
 
-typedef enum s_bool
-{
-	FALSE,
-	TRUE
-}	t_bool;
-
 struct s_data
 {
-	unsigned int	n_of_phi;
+	unsigned int	n_phi;
 	unsigned int	t_t_eat;
 	unsigned int	t_t_die;
 	unsigned int	t_t_sleep;
-	t_bool			end_if_die;
+	int				must_eat;
 	int				phi_died;
 	unsigned int	n_must_eat;
-	struct timeval 	tstart;
+	struct timeval	tstart;
 	pthread_mutex_t	mx_stdoutaccess;
 };
 
@@ -44,18 +50,14 @@ struct	s_phi
 	t_data			*data;
 };
 
-t_data 			parse(int ac, char **av);
+t_data			parse(int ac, char **av);
 void			put_error(char *str);
 void			put_message(t_phi *phi, char *str);
 
 void			lunch_philosophers(t_data *data);
 void			*thread_phi(void *arg);
+void			*thread_starve(void *arg);
 
-void			die(t_phi *phi);
-void			take_forks(t_phi *phi, int *phi_died);
-void			eat(t_phi *phi, int *phi_died);
-void			sleeping(t_phi *phi, int *phi_died);
 unsigned int	get_time(struct timeval tstart);
-void			ft_usleep(unsigned int time);
 
 #endif

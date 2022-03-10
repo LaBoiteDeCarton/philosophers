@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   put_error.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/10 15:56:58 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/10 15:56:59 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 #include <stdlib.h>
 
@@ -12,9 +24,10 @@ static size_t	ft_strlen(const char *s)
 		len++;
 	return (len);
 }
+
 void	put_error(char *str)
 {
-	int n;
+	int	n;
 
 	n = ft_strlen(str);
 	write(2, "ERROR: ", 7);

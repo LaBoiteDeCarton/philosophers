@@ -7,7 +7,7 @@ FLAGS = -Wall -Wextra -Werror
 	gcc ${FLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME}: ${OBJS}
-	gcc ${FLAGS} ${LIBFLAGS} ${OBJS}  -lpthread -o ${NAME} -g -fsanitize=address
+	gcc ${FLAGS} ${LIBFLAGS} ${OBJS}  -lpthread -o ${NAME}
 
 all: ${NAME}
 
