@@ -1,7 +1,7 @@
 NAME = philo_bonus
 SRCS = ${wildcard *.c}
 OBJS = ${SRCS:.c=.o}
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 .c.o:
 	gcc ${FLAGS} -c $< -o ${<:.c=.o}
