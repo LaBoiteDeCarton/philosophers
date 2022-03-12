@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lunch_philosophers.c                               :+:      :+:    :+:   */
+/*   lunch_philo.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 static void	set_phi_thread(t_phi *phi, pthread_mutex_t *fork, t_data*data)
 {
@@ -36,7 +36,7 @@ static void	set_phi_thread(t_phi *phi, pthread_mutex_t *fork, t_data*data)
 	}
 }
 
-void	mutex_free(pthread_mutex_t *mx_tab, unsigned int n)
+static void	mutex_free(pthread_mutex_t *mx_tab, unsigned int n)
 {
 	unsigned int	i;
 
@@ -45,7 +45,7 @@ void	mutex_free(pthread_mutex_t *mx_tab, unsigned int n)
 		pthread_mutex_destroy(&mx_tab[i++]);
 }
 
-void	lunch_philosophers(t_data *data)
+void	lunch_philo(t_data *data)
 {
 	int				i;
 	t_phi			*phi;

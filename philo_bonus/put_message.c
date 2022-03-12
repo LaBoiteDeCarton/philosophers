@@ -14,8 +14,8 @@
 
 void	put_message(t_phi *phi, char *str)
 {
-	pthread_mutex_lock(&(phi->data->mx_stdoutaccess));
-	if (!phi->data->phi_died)
+	sem_wait(phi->sem_stdoutaccess);
+	if (!phi->stop)
 		printf("%010d    %-4d %s\n", get_time(phi->data->tstart), phi->id, str);
-	pthread_mutex_unlock(&(phi->data->mx_stdoutaccess));
+	sem_post(phi->sem_stdoutaccess);
 }

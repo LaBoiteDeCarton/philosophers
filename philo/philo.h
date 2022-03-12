@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philo.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef philo_H
+# define philo_H
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -54,7 +54,7 @@ t_data			parse(int ac, char **av);
 void			put_error(char *str);
 void			put_message(t_phi *phi, char *str);
 
-void			lunch_philosophers(t_data *data);
+void			lunch_philo(t_data *data);
 void			*thread_phi(void *arg);
 void			*thread_starve(void *arg);
 

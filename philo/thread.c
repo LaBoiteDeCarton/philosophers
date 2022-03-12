@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 static void	ft_usleep(unsigned int time)
 {
@@ -25,9 +25,11 @@ static void	phi_die(t_phi *phi)
 {
 	pthread_mutex_lock(&(phi->data->mx_stdoutaccess));
 	if (!phi->data->phi_died)
+	{
 		printf("%010d    %-4d %s\n", get_time(phi->data->tstart),
 			phi->id, DIE_MSG);
-	phi->data->phi_died = 1;
+		phi->data->phi_died = 1;
+	}
 	pthread_mutex_unlock(&(phi->data->mx_stdoutaccess));
 }
 
