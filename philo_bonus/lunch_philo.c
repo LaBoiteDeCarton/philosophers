@@ -43,4 +43,5 @@ void	lunch_philo(t_data *data)
 	fork_phi(phi);
 	sem_unlink("/forks");
 	sem_unlink("/void");
+	sem_unlink("/stdoutaccess");
 }

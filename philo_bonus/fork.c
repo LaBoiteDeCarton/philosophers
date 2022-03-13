@@ -28,10 +28,7 @@ static void	phi_life(t_phi phi)
 		sem_post(phi.sem_fork);
 		sem_post(phi.sem_fork);
 		if (phi.data->must_eat && phi.eat_count >= phi.data->n_must_eat)
-		{
-			sem_post(phi.sem_void);
 			phi.stop = 1;
-		}
 		put_message(&phi, SLEEP_MSG);
 		ft_usleep(phi.data->t_t_sleep);
 		put_message(&phi, THINK_MSG);
