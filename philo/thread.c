@@ -76,6 +76,13 @@ void	*thread_phi(void *arg)
 	t_phi		*phi;
 
 	phi = (t_phi *)arg;
+	if (phi->data->n_phi == 1)
+	{
+		pthread_mutex_lock(phi->mx_fork_l);
+		put_message(phi, FORK_MSG);
+		ft_usleep(phi->data->t_t_die);
+		return (NULL);
+	}
 	if (phi->id % 2)
 		usleep(phi->data->t_t_eat / 2);
 	while (!phi->data->phi_died)

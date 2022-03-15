@@ -71,4 +71,5 @@ void	lunch_philo(t_data *data)
 	while (i < (int)data->n_phi)
 		pthread_join(phi[i++].th_id, NULL);
 	mutex_free(mx_fork, phi->data->n_phi);
+	free(phi);
 }

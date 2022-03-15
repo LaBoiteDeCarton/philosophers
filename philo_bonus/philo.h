@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef philo_H
-# define philo_H
+#ifndef PHILO_H
+# define PHILO_H
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -19,12 +19,14 @@
 # include <semaphore.h>
 # include <sys/wait.h>
 # include <sys/time.h>
+# include <signal.h>
 # define EAT_MSG "is eating"
 # define FORK_MSG "has taken a fork"
 # define SLEEP_MSG "is sleeping"
 # define THINK_MSG "is thinking"
 # define DIE_MSG "died"
 # define SEM_ERR_MSG "Semaphore could not be opened for a reason"
+# define MALLOC_ERR_MSG "Unable to malloc something important"
 
 typedef struct s_data	t_data;
 typedef struct s_phi	t_phi;
@@ -49,6 +51,7 @@ struct	s_phi
 	sem_t			*sem_fork;
 	sem_t			*sem_void;
 	sem_t			*sem_stdoutaccess;
+	sem_t			*sem_start;
 	struct timeval	last_meal;
 	t_data			*data;
 };
