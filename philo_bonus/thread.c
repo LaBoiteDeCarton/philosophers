@@ -1,41 +1,36 @@
-#include "philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   thread.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/15 17:33:03 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/15 17:33:06 by dmercadi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static void	sem_npost(sem_t *sem, int n)
-{
-	while (n-- > 0)
-		sem_post(sem);
-}
+#include "philo.h"
 
 void	*thread_imstarving(void *arg)
 {
-	t_phi *phi;
+	t_phi	*phi;
 
 	phi = (t_phi *)arg;
-	while (!phi->stop)
+	while (1)
 	{
 		if (get_time(phi->last_meal) > phi->data->t_t_die)
 		{
 			sem_wait(phi->sem_stdoutaccess);
 			if (!phi->stop)
 			{
-				phi->stop = 1;
-				printf("%010d    %-4d %s\n", get_time(phi->data->tstart), phi->id, DIE_MSG);
-				sem_npost(phi->sem_void, phi->data->n_phi);
+				printf("%010d    %-4d %s\n", get_time(phi->data->tstart),
+					phi->id, DIE_MSG);
+				sem_post(phi->sem_void);
+				exit(EXIT_SUCCESS);
 			}
-			sem_post(phi->sem_stdoutaccess);
-			
 		}
 		ft_usleep(100);
 	}
-	return (NULL);
-}
-
-void	*thread_otherlooser(void *arg)
-{
-	t_phi *phi;
-
-	phi = (t_phi *)arg;
-	sem_wait(phi->sem_void);
-	phi->stop = 1;
 	return (NULL);
 }

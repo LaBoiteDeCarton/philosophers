@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmercadi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 15:56:52 by dmercadi          #+#    #+#             */
-/*   Updated: 2022/03/10 15:56:53 by dmercadi         ###   ########.fr       */
+/*   Created: 2022/03/15 12:36:15 by dmercadi          #+#    #+#             */
+/*   Updated: 2022/03/15 12:36:16 by dmercadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef philo_H
-# define philo_H
+#ifndef PHILO_H
+# define PHILO_H
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

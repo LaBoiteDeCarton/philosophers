@@ -35,6 +35,7 @@ static int	ft_isdigit(char c)
 static int	ft_strisui(char *str)
 {
 	unsigned long	res;
+
 	if (!str)
 		return (0);
 	res = 0;
@@ -42,9 +43,10 @@ static int	ft_strisui(char *str)
 	{
 		if (!ft_isdigit(*str))
 			return (0);
-		res *= 10 + *str + '0';
+		res *= 10;
+		res += *str + '0';
 		if (res > UINT32_MAX)
-			return (0); //checker si marche
+			return (0);
 		str++;
 	}
 	return (1);
