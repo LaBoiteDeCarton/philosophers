@@ -12,12 +12,12 @@
 
 #include "philo.h"
 
-static void	ft_usleep(unsigned int time)
+static void	ft_usleep(unsigned int time, t_phi *phi)
 {
 	struct timeval	tstart;
 
 	gettimeofday(&tstart, NULL);
-	while (time > get_time(tstart))
+	while (time > get_time(tstart) && !phi->data->phi_died)
 		usleep(1000);
 }
 
@@ -60,14 +60,14 @@ static void	phi_life(t_phi *phi)
 	put_message(phi, FORK_MSG);
 	gettimeofday(&phi->last_meal, NULL);
 	put_message(phi, EAT_MSG);
-	ft_usleep(phi->data->t_t_eat);
+	ft_usleep(phi->data->t_t_eat, phi);
 	phi->eat_count++;
 	pthread_mutex_unlock(phi->mx_fork_l);
 	pthread_mutex_unlock(phi->mx_fork_r);
 	if (phi->data->must_eat && phi->eat_count >= phi->data->n_must_eat)
-		phi->data->phi_died = 1;
+		return ;
 	put_message(phi, SLEEP_MSG);
-	ft_usleep(phi->data->t_t_sleep);
+	ft_usleep(phi->data->t_t_sleep, phi);
 	put_message(phi, THINK_MSG);
 }
 
@@ -78,7 +78,7 @@ void	*thread_phi(void *arg)
 	phi = (t_phi *)arg;
 	if (phi->id % 2)
 		usleep(phi->data->t_t_eat / 2);
-	while (!phi->data->phi_died)
+	while (!phi->data->phi_died && !(phi->data->must_eat && phi->eat_count >= phi->data->n_must_eat))
 		phi_life(phi);
 	pthread_mutex_unlock(phi->mx_fork_l);
 	pthread_mutex_unlock(phi->mx_fork_r);
