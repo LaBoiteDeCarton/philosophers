@@ -80,11 +80,11 @@ void	*thread_phi(void *arg)
 	{
 		pthread_mutex_lock(phi->mx_fork_l);
 		put_message(phi, FORK_MSG);
-		ft_usleep(phi->data->t_t_die);
+		ft_usleep(phi->data->t_t_die, phi);
 		return (NULL);
 	}
 	if (phi->id % 2)
-		usleep(phi->data->t_t_eat / 2);
+		ft_usleep(phi->data->t_t_eat / 2, phi);
 	while (!phi->data->phi_died && !(phi->data->must_eat && phi->eat_count >= phi->data->n_must_eat))
 		phi_life(phi);
 	pthread_mutex_unlock(phi->mx_fork_l);
