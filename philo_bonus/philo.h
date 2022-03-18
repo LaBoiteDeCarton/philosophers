@@ -64,6 +64,7 @@ void			lunch_philo(t_data *data);
 void			fork_phi(t_phi phi);
 void			*thread_imstarving(void *arg);
 void			*thread_otherlooser(void *arg);
+void			phi_life(t_phi phi);
 
 unsigned int	get_time(struct timeval tstart);
 void			ft_usleep(unsigned int time);

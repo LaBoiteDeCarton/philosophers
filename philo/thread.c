@@ -85,7 +85,8 @@ void	*thread_phi(void *arg)
 	}
 	if (phi->id % 2)
 		ft_usleep(phi->data->t_t_eat / 2, phi);
-	while (!phi->data->phi_died && !(phi->data->must_eat && phi->eat_count >= phi->data->n_must_eat))
+	while (!phi->data->phi_died && !(phi->data->must_eat
+			&& phi->eat_count >= phi->data->n_must_eat))
 		phi_life(phi);
 	pthread_mutex_unlock(phi->mx_fork_l);
 	pthread_mutex_unlock(phi->mx_fork_r);
